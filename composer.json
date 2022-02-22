@@ -1,0 +1,26 @@
+{
+  "name": "ares-bagatin/woo-commerce-sdk",
+  "description": "SDK for the WooCommerce API",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Ares",
+      "email": "ares.w1996@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.4.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5.13",
+    "symfony/var-dumper": "^5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "WooCommerceSDK\\": "src/",
+      "WooCommerceSDK\\Tests\\": "tests/"
+    }
+  }
+}

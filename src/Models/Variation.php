@@ -2,26 +2,26 @@
 
 namespace WooCommerceSDK\Models;
 
-use DateTime;
+use Carbon\Carbon;
 use WooCommerceSDK\Models\General\Model;
 use WooCommerceSDK\Models\Product\ProductDownloads;
 
 /**
  * @property-read int $id Unique identifier for the resource
- * @property-read DateTime $date_created The date the variation was created, in the site's timezone
- * @property-read DateTime $date_created_gmt The date the variation was created, as GMT
- * @property-read DateTime $date_modified The date the variation was last modified, in the site's timezone
- * @property-read DateTime $date_modified_gmt The date the variation was last modified, as GMT
+ * @property-read Carbon $date_created The date the variation was created, in the site's timezone
+ * @property-read Carbon $date_created_gmt The date the variation was created, as GMT
+ * @property-read Carbon $date_modified The date the variation was last modified, in the site's timezone
+ * @property-read Carbon $date_modified_gmt The date the variation was last modified, as GMT
  * @property string $description Variation description
  * @property-read string $permalink Variation URL
  * @property string $sku Unique identifier
  * @property-read string $price Current variation price
  * @property string $regular_price Variation regular price
  * @property string $sale_price Variation sale price
- * @property DateTime $date_on_sale_from Start date of sale price, in the site's timezone
- * @property DateTime $date_on_sale_from_gmt Start date of sale price, as GMT
- * @property DateTime $date_on_sale_to End date of sale price, in the site's timezone
- * @property DateTime $date_on_sale_to_gmt End date of sale price, as GMT
+ * @property Carbon $date_on_sale_from Start date of sale price, in the site's timezone
+ * @property Carbon $date_on_sale_from_gmt Start date of sale price, as GMT
+ * @property Carbon $date_on_sale_to End date of sale price, in the site's timezone
+ * @property Carbon $date_on_sale_to_gmt End date of sale price, as GMT
  * @property-read bool $on_sale Shows if the variation is on sale
  * @property string $status Variation status. Options: `draft`, `pending`, `private` and `publish`. Default is `publish`
  * @property-read bool $purchasable Shows if the variation can be bought

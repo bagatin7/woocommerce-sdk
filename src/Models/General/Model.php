@@ -2,10 +2,9 @@
 
 namespace WooCommerceSDK\Models\General;
 
-use DateTime;
+use Carbon\Carbon;
 use Exception;
 use JsonSerializable;
-use WooCommerceSDK\Models\Product;
 
 class Model implements JsonSerializable
 {
@@ -28,14 +27,16 @@ class Model implements JsonSerializable
      */
     public function __set($property, $value)
     {
-        if (in_array($property, array_keys(static::$array_of_objects))) {
-            $value = (static::$array_of_objects[$property])::getGroupFromJson(json_encode($value));
-        }
-        if (in_array($property, array_keys(static::$objects))) {
-            $value = (static::$objects[$property])::getFromJson(json_encode($value));
-        }
-        if (in_array($property, static::$dates) and !$value instanceof DateTime) {
-            $value = new DateTime($value);
+        if($value != null) {
+            if (in_array($property, array_keys(static::$array_of_objects))) {
+                $value = (static::$array_of_objects[$property])::getGroupFromJson(json_encode($value));
+            }
+            if (in_array($property, array_keys(static::$objects))) {
+                $value = (static::$objects[$property])::getFromJson(json_encode($value));
+            }
+            if (in_array($property, static::$dates) and !$value instanceof Carbon) {
+                $value = new Carbon($value);
+            }
         }
         $this->$property = $value;
     }
@@ -59,7 +60,6 @@ class Model implements JsonSerializable
     {
         $object = json_decode($json);
         $product = new static();
-        var_dump(get_class($product));
         foreach ($object as $key => $value) {
             $product->$key = $value;
         }
@@ -70,8 +70,8 @@ class Model implements JsonSerializable
     {
         $array = (array)$this;
         foreach ($array as $key => $value) {
-            if (in_array($key, static::$dates)) {
-                $array[$key] = ($value)->format(DateTime::ATOM);
+            if (in_array($key, static::$dates) and $value != null) {
+                $array[$key] = ($value)->format("Y-m-d\TH:i:s");
             }
         }
         return $array;

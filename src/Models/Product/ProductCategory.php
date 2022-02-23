@@ -2,16 +2,15 @@
 
 namespace WooCommerceSDK\Models\Product;
 
+use WooCommerceSDK\Models\General\Model;
+
 /**
- * @property int $id
- * @property-read string $name
- * @property-read string $slug
+ * @property int $id Category ID
+ * @property-read string $name Category name
+ * @property-read string $slug Category slug
  */
-class ProductCategory
+class ProductCategory extends Model
 {
-    public int $id;
-    public string $name;
-    public string $slug;
 
     /**
      * @param  string  $json
@@ -19,8 +18,7 @@ class ProductCategory
      */
     public static function getGroupFromJson(string $json): array
     {
-        $objects = json_decode($json);
-        return array_map(fn($object) => self::getFromJson(json_encode($object)), $objects);
+        return parent::getGroupFromJson($json);
     }
 
     /**
@@ -29,11 +27,6 @@ class ProductCategory
      */
     public static function getFromJson(string $json): ProductCategory
     {
-        $object = json_decode($json);
-        $category = new ProductCategory();
-        $category->id = $object->id;
-        $category->name = $object->name;
-        $category->slug = $object->slug;
-        return $category;
+        return parent::getFromJson($json);
     }
 }

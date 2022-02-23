@@ -2,16 +2,16 @@
 
 namespace WooCommerceSDK\Models;
 
-use DateTime;
+use Carbon\Carbon;
 use Exception;
 use WooCommerceSDK\Models\General\Model;
 
 /**
  * @property int $id Image ID
- * @property DateTime $date_created The date the image was created, in the site's timezone
- * @property DateTime $date_created_gmt The date the image was created, as GMT
- * @property DateTime $date_modified The date the image was last modified, in the site's timezone
- * @property DateTime $date_modified_gmt The date the image was last modified, as GMT
+ * @property Carbon $date_created The date the image was created, in the site's timezone
+ * @property Carbon $date_created_gmt The date the image was created, as GMT
+ * @property Carbon $date_modified The date the image was last modified, in the site's timezone
+ * @property Carbon $date_modified_gmt The date the image was last modified, as GMT
  * @property string $src Image URL
  * @property string $name Image name
  * @property string $alt Image alternative text

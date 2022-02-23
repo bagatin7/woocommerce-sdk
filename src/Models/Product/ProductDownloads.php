@@ -2,16 +2,15 @@
 
 namespace WooCommerceSDK\Models\Product;
 
+use WooCommerceSDK\Models\General\Model;
+
 /**
  * @property int $id File ID
  * @property string $name File name
  * @property string $file File URL
  */
-class ProductDownloads
+class ProductDownloads extends Model
 {
-    public int $id;
-    public string $name;
-    public string $file;
 
     /**
      * @param  string  $json
@@ -19,8 +18,7 @@ class ProductDownloads
      */
     public static function getGroupFromJson(string $json): array
     {
-        $objects = json_decode($json);
-        return array_map(fn($object) => self::getFromJson(json_encode($object)), $objects);
+        return parent::getGroupFromJson($json);
     }
 
     /**
@@ -29,11 +27,6 @@ class ProductDownloads
      */
     public static function getFromJson(string $json): ProductDownloads
     {
-        $object = json_decode($json);
-        $download = new ProductDownloads();
-        $download->id = $object->id;
-        $download->name = $object->name;
-        $download->file = $object->file;
-        return $download;
+        return parent::getFromJson($json);
     }
 }

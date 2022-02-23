@@ -2,14 +2,14 @@
 
 namespace WooCommerceSDK\Models;
 
-use DateTime;
+use Carbon\Carbon;
 use Exception;
 use WooCommerceSDK\Models\General\Model;
 
 /**
  * @property int $id Unique identifier for the resource
- * @property DateTime $date_created The date the review was created, in the site's timezone
- * @property DateTime $date_created_gmt The date the review was created, as GMT
+ * @property Carbon $date_created The date the review was created, in the site's timezone
+ * @property Carbon $date_created_gmt The date the review was created, as GMT
  * @property int $product_id Unique identifier for the product that the review belongs to
  * @property string $status Status of the review. Options: `approved`, `hold`, `spam`, `unspam`, `trash` and `untrash`. Defaults to `approved`
  * @property string $reviewer Reviewer name

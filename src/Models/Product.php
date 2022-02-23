@@ -2,7 +2,7 @@
 
 namespace WooCommerceSDK\Models;
 
-use DateTime;
+use Carbon\Carbon;
 use Exception;
 use WooCommerceSDK\Models\General\Model;
 use WooCommerceSDK\Models\Product\ProductAttribute;
@@ -17,10 +17,10 @@ use WooCommerceSDK\Utils\Caster;
  * @property string $name Product name
  * @property string $slug Product slug
  * @property-read string $permalink Product URL
- * @property-read DateTime $date_created The date the product was created, in the site's timezone
- * @property-read DateTime $date_created_gmt The date the product was created, as GMT
- * @property-read DateTime $date_modified The date the product was last modified, in the site's timezone
- * @property-read DateTime $date_modified_gmt The date the product was last modified, as GMT
+ * @property-read Carbon $date_created The date the product was created, in the site's timezone
+ * @property-read Carbon $date_created_gmt The date the product was created, as GMT
+ * @property-read Carbon $date_modified The date the product was last modified, in the site's timezone
+ * @property-read Carbon $date_modified_gmt The date the product was last modified, as GMT
  * @property string $type Product type. Options: `simple`, `grouped`, `external` and `variable`. Default is `simple`
  * @property string $status Product status (post status). Options: `draft`, `pending`, `private` and `publish`. Default is `publish`
  * @property bool $featured Featured product. Default is `false`
@@ -31,10 +31,10 @@ use WooCommerceSDK\Utils\Caster;
  * @property-read string $price Current product price
  * @property string $regular_price Product regular price
  * @property string $sale_price Product sale price
- * @property DateTime $date_on_sale_from Start date of sale price, in the site's timezone
- * @property DateTime $date_on_sale_from_gmt Start date of sale price, as GMT
- * @property DateTime $date_on_sale_to End date of sale price, in the site's timezone
- * @property DateTime $date_on_sale_to_gmt End date of sale price, as GMT
+ * @property Carbon $date_on_sale_from Start date of sale price, in the site's timezone
+ * @property Carbon $date_on_sale_from_gmt Start date of sale price, as GMT
+ * @property Carbon $date_on_sale_to End date of sale price, in the site's timezone
+ * @property Carbon $date_on_sale_to_gmt End date of sale price, as GMT
  * @property-read string $price_html Price formatted in HTML
  * @property-read bool $on_sale Shows if the product is on sale
  * @property-read bool $purchasable Shows if the product can be bought

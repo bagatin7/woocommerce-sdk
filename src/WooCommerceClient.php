@@ -5,8 +5,10 @@ namespace WooCommerceSDK;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use WooCommerceSDK\Models\Attribute;
 use WooCommerceSDK\Models\Category;
 use WooCommerceSDK\Models\Product;
+use WooCommerceSDK\Models\Variation;
 
 class WooCommerceClient
 {
@@ -157,4 +159,129 @@ class WooCommerceClient
         return Category::getFromJson($request->getBody()->getContents());
     }
 
+    /**
+     * List attributes from the website
+     * @return Attribute[]
+     * @throws GuzzleException
+     */
+    public function listAttributes(): array {
+        $request = $this->client->get('products/attributes');
+        return Attribute::getGroupFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Show an attribute from the website
+     * @param  int  $id
+     * @return Attribute
+     * @throws GuzzleException
+     */
+    public function showAttribute(int $id): Attribute {
+        $request = $this->client->get("products/attributes/$id");
+        return Attribute::getFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Create an attribute in the website
+     * @param  Attribute  $attribute
+     * @return Attribute
+     * @throws GuzzleException
+     */
+    public function createAttribute(Attribute $attribute): Attribute {
+        $request = $this->client->post(
+            'products/attributes',
+            ['form_params' => $attribute->jsonSerialize()]
+        );
+        return Attribute::getFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Update an attribute in the website
+     * @param  Attribute  $attribute
+     * @return Attribute
+     * @throws GuzzleException
+     */
+    public function updateAttribute(Attribute $attribute): Attribute {
+        $request = $this->client->post(
+            "products/attributes/$attribute->id",
+            ['form_params' => $attribute->jsonSerialize()]
+        );
+        return Attribute::getFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Delete an attribute in the website
+     * @param  Attribute  $attribute
+     * @return Attribute
+     * @throws GuzzleException
+     */
+    public function deleteAttribute(Attribute $attribute): Attribute {
+        $request = $this->client->delete("products/attributes/$attribute->id?force=true", );
+        return Attribute::getFromJson($request->getBody()->getContents());
+    }
+
+
+    /**
+     * List variations from the website
+     * @param  Product  $product
+     * @return Variation[]
+     * @throws GuzzleException
+     */
+    public function listVariations(Product $product): array {
+        $request = $this->client->get("products/$product->id/variations");
+        return Variation::getGroupFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Show a variation from the website
+     * @param  Product  $product
+     * @param  int  $id
+     * @return Variation
+     * @throws GuzzleException
+     */
+    public function showVariation(Product $product, int $id): Variation {
+        $request = $this->client->get("products/$product->id/variations/$id");
+        return Variation::getFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Create a variation in the website
+     * @param  Product  $product
+     * @param  Variation  $variation
+     * @return Variation
+     * @throws GuzzleException
+     */
+    public function createVariation(Product $product, Variation $variation): Variation {
+        $request = $this->client->post(
+            "products/$product->id/variations",
+            ['form_params' => $variation->jsonSerialize()]
+        );
+        return Variation::getFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Update a variation in the website
+     * @param  Product  $product
+     * @param  Variation  $variation
+     * @return Variation
+     * @throws GuzzleException
+     */
+    public function updateVariation(Product $product, Variation $variation): Variation {
+        $request = $this->client->put(
+            "products/$product->id/variations/$variation->id",
+            ['form_params' => $variation->jsonSerialize()]
+        );
+        return Variation::getFromJson($request->getBody()->getContents());
+    }
+
+    /**
+     * Delete a variation in the website
+     * @param  Product  $product
+     * @param  Variation  $variation
+     * @return Variation
+     * @throws GuzzleException
+     */
+    public function deleteVariation(Product $product, Variation $variation): Variation {
+        $request = $this->client->delete("products/$product->id/variations/$variation->id");
+        return Variation::getFromJson($request->getBody()->getContents());
+    }
 }

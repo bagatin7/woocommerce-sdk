@@ -34,4 +34,27 @@ class TestCase extends BaseTestCase
             dump($x);
         }
     }
+
+    protected function searchByColumn(array $models, string $name, string $column)
+    {
+        $index = array_search($name, array_column($models, $column));
+        return $index === false ? null : $models[$index];
+    }
+
+    protected function searchForName(array $models, string $name)
+    {
+        return $this->searchByColumn($models, $name, "name");
+    }
+
+    protected function searchByMetaData(array $models, string $key)
+    {
+        foreach ($models as $model){
+            foreach ($model->meta_data as $meta_datum){
+                if($meta_datum->key === $key){
+                    return $model;
+                }
+            }
+        }
+        return null;
+    }
 }
